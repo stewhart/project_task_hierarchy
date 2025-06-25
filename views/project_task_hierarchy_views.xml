@@ -2,25 +2,23 @@
 <odoo>
   <!-- 1) Hierarchical tree view -->
   <record id="view_project_task_hierarchy_tree" model="ir.ui.view">
-  <field name="name">project.task.hierarchy.tree</field>
-  <field name="model">project.task</field>
-  <field name="arch" type="xml">
-    <tree string="Task Hierarchy" decoration-info="stage_id.sequence == 1"> 
-      <!-- 1) Show the Project -->
-      <field name="project_id" string="Project"/>
-
-      <!-- 2) Show the Parent as “Main Task” (will be blank for top-level tasks) -->
-      <field name="parent_id" string="Main Task"/>
-
-      <!-- 3) The actual task’s own name -->
-      <field name="name" string="Task"/>
-
-      <!-- 4) Any other columns -->
-      <field name="date_deadline" string="Deadline"/>
-      <field name="stage_id" string="Stage"/>
-    </tree>
-  </field>
-</record>
+    <field name="name">project.task.hierarchy.tree</field>
+    <field name="model">project.task</field>
+    <field name="arch" type="xml">
+      <tree string="Task Hierarchy">
+        <!-- Needed for nesting -->
+        <field name="parent_id" invisible="1"/>
+        <!-- Show which project the task belongs to -->
+        <field name="project_id" string="Project"/>
+        <!-- Show its immediate parent (blank for top-level tasks) -->
+        <field name="parent_id" string="Main Task" context="{'show_field': 'name'}"/>
+        <!-- This row’s own name -->
+        <field name="name" string="Task"/>
+        <field name="date_deadline" string="Deadline"/>
+        <field name="stage_id" string="Stage"/>
+      </tree>
+    </field>
+  </record>
 
   <!-- 2) Action to open this hierarchy view -->
   <record id="action_project_task_hierarchy" model="ir.actions.act_window">
@@ -31,7 +29,7 @@
     <field name="context">{'group_expand': ['parent_id']}</field>
   </record>
 
-  <!-- 3) Menu entry under the existing Projects menu -->
+  <!-- 3) Menu entry under your Projects menu -->
   <menuitem id="menu_project_task_hierarchy"
             name="Task Hierarchy"
             parent="project.menu_projects"
