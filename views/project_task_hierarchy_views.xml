@@ -7,7 +7,6 @@
       <tree string="Task Hierarchy" decoration-info="state == 'in_progress'">
         <field name="parent_id" invisible="1"/>
         <field name="name"/>
-        <field name="user_id"/>
         <field name="date_deadline"/>
         <field name="stage_id"/>
       </tree>
