@@ -25,9 +25,9 @@
     <field name="context">{'group_expand': ['parent_id']}</field>
   </record>
 
-  <!-- 3) Menu entry under Project -->
+  <!-- 3) Menu entry under Project (correct root menu ID) -->
   <menuitem id="menu_project_task_hierarchy"
             name="Task Hierarchy"
-            parent="project.menu_projects_root"
+            parent="project.menu_root"
             action="action_project_task_hierarchy"/>
 </odoo>
