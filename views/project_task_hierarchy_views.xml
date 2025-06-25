@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- 1) Hierarchical tree view with state for decoration -->
+  <!-- 1) Hierarchical tree view -->
   <record id="view_project_task_hierarchy_tree" model="ir.ui.view">
     <field name="name">project.task.hierarchy.tree</field>
     <field name="model">project.task</field>
     <field name="arch" type="xml">
-      <tree string="Task Hierarchy" decoration-info="state == 'in_progress'">
-        <!-- Needed for decoration-info -->
-        <field name="state" invisible="1"/>
+      <tree string="Task Hierarchy">
         <!-- Enable nesting -->
         <field name="parent_id" invisible="1"/>
         <!-- Display columns -->
