@@ -2,19 +2,25 @@
 <odoo>
   <!-- 1) Hierarchical tree view -->
   <record id="view_project_task_hierarchy_tree" model="ir.ui.view">
-    <field name="name">project.task.hierarchy.tree</field>
-    <field name="model">project.task</field>
-    <field name="arch" type="xml">
-      <tree string="Task Hierarchy">
-        <!-- Enable nesting -->
-        <field name="parent_id" invisible="1"/>
-        <!-- Display columns -->
-        <field name="name"/>
-        <field name="date_deadline"/>
-        <field name="stage_id"/>
-      </tree>
-    </field>
-  </record>
+  <field name="name">project.task.hierarchy.tree</field>
+  <field name="model">project.task</field>
+  <field name="arch" type="xml">
+    <tree string="Task Hierarchy" decoration-info="stage_id.sequence == 1"> 
+      <!-- 1) Show the Project -->
+      <field name="project_id" string="Project"/>
+
+      <!-- 2) Show the Parent as “Main Task” (will be blank for top-level tasks) -->
+      <field name="parent_id" string="Main Task"/>
+
+      <!-- 3) The actual task’s own name -->
+      <field name="name" string="Task"/>
+
+      <!-- 4) Any other columns -->
+      <field name="date_deadline" string="Deadline"/>
+      <field name="stage_id" string="Stage"/>
+    </tree>
+  </field>
+</record>
 
   <!-- 2) Action to open this hierarchy view -->
   <record id="action_project_task_hierarchy" model="ir.actions.act_window">
